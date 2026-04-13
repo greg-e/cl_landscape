@@ -1,0 +1,2 @@
+ContractID,CustomerName,Stage,Owner,NextAction,NextActionDate,RenewalStatus,ContractEndDate,Phone,Email,CurrentPrice,ProposedRenewalPrice,IncreasePercent,LastContactDate,LastActionDate,QBInvoiceMemoRef,EstimateID,QuoteID,ContractSignedDate,Notes
+CT-2026-0001,Example Customer,Active,Renewal Manager,Send renewal letter,2027-03-31,Upcoming Renewal (90),2027-04-30,555-0100,jane@example.com,1800,1890,5,2027-03-15,2026-04-12,CT-2026-0001,EST-2026-0001,QT-2026-0001,2026-04-18,Mobile sample row - replace with real data
