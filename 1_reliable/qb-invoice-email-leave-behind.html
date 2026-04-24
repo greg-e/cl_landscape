@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CL Landscape — Emailing Invoices from QuickBooks Desktop 2019</title>
+  <style>
+    /* ── Reset & Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      color: #1a1a1a;
+      background: #fff;
+      padding: 0;
+    }
+
+    /* ── Print layout ─────────────────────────────────── */
+    @page {
+      size: letter;
+      margin: 0.65in 0.75in 0.65in 0.75in;
+    }
+
+    @media print {
+      body { font-size: 10.5pt; }
+      .no-break { page-break-inside: avoid; }
+      .page-break { page-break-before: always; }
+    }
+
+    /* ── Screen wrapper ───────────────────────────────── */
+    .page {
+      max-width: 7.5in;
+      margin: 0 auto;
+      padding: 0.65in 0.75in;
+    }
+
+    /* ── Header ───────────────────────────────────────── */
+    .header {
+      border-bottom: 3px solid #2e7d32;
+      padding-bottom: 10px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .header-left h1 {
+      font-size: 18pt;
+      font-weight: 700;
+      color: #2e7d32;
+      line-height: 1.15;
+    }
+
+    .header-left p {
+      font-size: 10pt;
+      color: #555;
+      margin-top: 3px;
+    }
+
+    .header-right {
+      text-align: right;
+      font-size: 9pt;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    /* ── Section titles ───────────────────────────────── */
+    h2 {
+      font-size: 12pt;
+      font-weight: 700;
+      color: #fff;
+      background: #2e7d32;
+      padding: 5px 10px;
+      border-radius: 3px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    h2:first-of-type { margin-top: 0; }
+
+    h3 {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #1b5e20;
+      margin: 14px 0 6px 0;
+      border-bottom: 1px solid #c8e6c9;
+      padding-bottom: 3px;
+    }
+
+    /* ── Intro note ───────────────────────────────────── */
+    .intro-box {
+      background: #f1f8e9;
+      border-left: 4px solid #2e7d32;
+      padding: 9px 12px;
+      border-radius: 2px;
+      font-size: 10pt;
+      margin-bottom: 18px;
+      color: #2d2d2d;
+    }
+
+    /* ── Numbered steps ───────────────────────────────── */
+    ol {
+      padding-left: 1.4em;
+    }
+
+    ol li {
+      margin-bottom: 5px;
+      line-height: 1.55;
+    }
+
+    ol li:last-child { margin-bottom: 0; }
+
+    /* ── Inline key / button labels ──────────────────── */
+    kbd {
+      display: inline-block;
+      background: #f5f5f5;
+      border: 1px solid #bbb;
+      border-radius: 3px;
+      padding: 0px 5px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 9.5pt;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    /* ── Note callout ─────────────────────────────────── */
+    .note {
+      background: #fff8e1;
+      border-left: 4px solid #f9a825;
+      padding: 7px 10px;
+      font-size: 9.5pt;
+      border-radius: 2px;
+      margin: 8px 0;
+      color: #4a3800;
+    }
+
+    .note strong { color: #e65100; }
+
+    /* ── Two-column layout ────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 4px;
+    }
+
+    .col-box {
+      border: 1px solid #c8e6c9;
+      border-radius: 4px;
+      padding: 10px 12px;
+    }
+
+    .col-box h3 {
+      margin-top: 0;
+      border-bottom-color: #a5d6a7;
+    }
+
+    /* ── Troubleshooting table ────────────────────────── */
+    .trouble-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin-top: 6px;
+    }
+
+    .trouble-table thead tr {
+      background: #e8f5e9;
+    }
+
+    .trouble-table th {
+      text-align: left;
+      padding: 5px 8px;
+      font-weight: 700;
+      border-bottom: 2px solid #a5d6a7;
+      color: #1b5e20;
+    }
+
+    .trouble-table td {
+      padding: 5px 8px;
+      border-bottom: 1px solid #e0e0e0;
+      vertical-align: top;
+    }
+
+    .trouble-table tr:last-child td { border-bottom: none; }
+
+    /* ── Checklist ────────────────────────────────────── */
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+      columns: 2;
+      column-gap: 20px;
+    }
+
+    .checklist li {
+      margin-bottom: 5px;
+      padding-left: 22px;
+      position: relative;
+      font-size: 10pt;
+      break-inside: avoid;
+    }
+
+    .checklist li::before {
+      content: "☐";
+      position: absolute;
+      left: 0;
+      color: #2e7d32;
+      font-size: 11pt;
+    }
+
+    /* ── Footer ───────────────────────────────────────── */
+    .footer {
+      border-top: 1px solid #c8e6c9;
+      margin-top: 28px;
+      padding-top: 8px;
+      font-size: 8.5pt;
+      color: #888;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HEADER ──────────────────────────────────────── -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Emailing Invoices from QuickBooks Desktop</h1>
+      <p>Admin Reference Guide &nbsp;·&nbsp; QuickBooks Desktop 2019</p>
+    </div>
+    <div class="header-right">
+      CL Landscape<br>
+      Prepared April 2026
+    </div>
+  </div>
+
+  <!-- ── INTRO ───────────────────────────────────────── -->
+  <div class="intro-box">
+    QuickBooks is configured to send invoices directly through the <strong>Outlook desktop app</strong> using the
+    <strong>jose.ramos@cl-land.com</strong> mailbox. The steps below cover daily use — sending one invoice at a time
+    and batching multiple invoices — plus quick fixes for common issues.
+  </div>
+
+  <!-- ── SECTION 1 ────────────────────────────────────── -->
+  <div class="no-break">
+    <h2>1 &nbsp; Send a Single Invoice</h2>
+    <ol>
+      <li>In QuickBooks, open the invoice: <kbd>Customers</kbd> → <kbd>Create Invoices</kbd>, then find or create the invoice.</li>
+      <li>Verify the customer's email address is shown in the <strong>Bill To</strong> area. If it's missing, update the customer record first (see Section 4).</li>
+      <li>Make sure the <strong>"To be e-mailed"</strong> checkbox at the top of the invoice is <strong>checked</strong>.</li>
+      <li>Click the <strong>envelope icon</strong> (Email) at the top of the invoice window, or go to <kbd>File</kbd> → <kbd>Send Forms</kbd>.</li>
+      <li>A preview window opens showing the recipient address and subject line. Review it, then click <kbd>Send Now</kbd>.</li>
+      <li>Outlook will briefly open in the background and send the email. The invoice status will update to <strong>Sent</strong>.</li>
+    </ol>
+    <div class="note">
+      <strong>Tip:</strong> After sending, open Outlook and check <strong>Sent Items</strong> to confirm the email went out with the PDF attached.
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 ────────────────────────────────────── -->
+  <div class="no-break">
+    <h2>2 &nbsp; Send a Batch of Invoices</h2>
+    <ol>
+      <li>Go to <kbd>File</kbd> → <kbd>Send Forms</kbd>.</li>
+      <li>QuickBooks lists every invoice that has <strong>"To be e-mailed"</strong> checked.</li>
+      <li>Review the list. <strong>Uncheck</strong> any invoices you do not want to send right now.</li>
+      <li>Click <kbd>Send Now</kbd>. QuickBooks will email each invoice one at a time through Outlook.</li>
+      <li>When finished, open Outlook → <strong>Sent Items</strong> and spot-check 2–3 emails to confirm delivery.</li>
+    </ol>
+    <div class="note">
+      <strong>Note:</strong> Outlook must be open (but not actively composing a new email) while QuickBooks is sending the batch.
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 ────────────────────────────────────── -->
+  <div class="no-break">
+    <h2>3 &nbsp; Verify Delivery</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>In Outlook</h3>
+        <ol>
+          <li>Open Outlook and go to <strong>Sent Items</strong>.</li>
+          <li>Find the invoice email — confirm the PDF is attached.</li>
+          <li>If the email is missing, the send failed (see Section 5).</li>
+        </ol>
+      </div>
+      <div class="col-box">
+        <h3>In QuickBooks</h3>
+        <ol>
+          <li>Open the invoice that was sent.</li>
+          <li>Look for the <strong>"Sent"</strong> label or email icon status near the top.</li>
+          <li>The history tab will also log the send date and recipient.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 ────────────────────────────────────── -->
+  <div class="no-break">
+    <h2>4 &nbsp; Add or Update a Customer's Email Address</h2>
+    <ol>
+      <li>Go to <kbd>Customers</kbd> → <kbd>Customer Center</kbd>.</li>
+      <li>Double-click the customer's name to open their record.</li>
+      <li>Click the <strong>Address Info</strong> tab.</li>
+      <li>Enter or correct the email address in the <strong>Main Email</strong> field.</li>
+      <li>Click <kbd>OK</kbd> to save. The next invoice created for this customer will include the email address automatically.</li>
+    </ol>
+  </div>
+
+  <!-- ── SECTION 5 ────────────────────────────────────── -->
+  <h2>5 &nbsp; Quick Troubleshooting</h2>
+  <table class="trouble-table">
+    <thead>
+      <tr>
+        <th style="width:32%">Problem</th>
+        <th>What to do</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Invoice not in Outlook Sent Items</td>
+        <td>Make sure Outlook is open before sending. Try again via <kbd>File</kbd> → <kbd>Send Forms</kbd>. If it still fails, restart both Outlook and QuickBooks, then retry.</td>
+      </tr>
+      <tr>
+        <td>QuickBooks freezes or crashes on send</td>
+        <td>Update QuickBooks: <kbd>Help</kbd> → <kbd>Update QuickBooks Desktop</kbd>. Also check that Outlook is open and not composing another email at the time of the send.</td>
+      </tr>
+      <tr>
+        <td>Customer says invoice went to spam</td>
+        <td>Ask the customer to mark the email as "Not Spam" and add <strong>jose.ramos@cl-land.com</strong> to their contacts. This is a one-time fix per customer.</td>
+      </tr>
+      <tr>
+        <td>Customer says no PDF was attached</td>
+        <td>In QuickBooks, go to <kbd>Help</kbd> → <kbd>QuickBooks PDF &amp; Print Repair Tool</kbd> and run the repair. Then resend the invoice.</td>
+      </tr>
+      <tr>
+        <td>"To be e-mailed" checkbox is missing</td>
+        <td>The customer record has no email address. Add it in Customer Center (see Section 4), then reopen the invoice — the checkbox will appear.</td>
+      </tr>
+      <tr>
+        <td>Outlook does not open at all when sending</td>
+        <td>Outlook may not be set as the default mail app. Contact your IT support to verify the Windows default app setting and QuickBooks Send Forms preference.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ── SECTION 6 ────────────────────────────────────── -->
+  <div class="no-break" style="margin-top:20px;">
+    <h2>6 &nbsp; Daily Send Checklist</h2>
+    <ul class="checklist">
+      <li>Outlook is open before starting</li>
+      <li>Customer has a valid email address on file</li>
+      <li>"To be e-mailed" box is checked on each invoice</li>
+      <li>Reviewed invoice amounts and due dates before sending</li>
+      <li>Clicked Send Now and saw the confirmation</li>
+      <li>Checked Outlook Sent Items — email present with PDF</li>
+      <li>Invoice status in QuickBooks shows "Sent"</li>
+    </ul>
+  </div>
+
+  <!-- ── FOOTER ───────────────────────────────────────── -->
+  <div class="footer">
+    <span>CL Landscape · Admin Reference · QuickBooks Desktop 2019</span>
+    <span>Questions? Contact your IT support.</span>
+  </div>
+
+</div>
+</body>
+</html>

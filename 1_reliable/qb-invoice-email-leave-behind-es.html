@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CL Landscape — Enviar Facturas por Correo desde QuickBooks Desktop 2019</title>
+  <style>
+    /* ── Reset & Base ─────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      color: #1a1a1a;
+      background: #fff;
+      padding: 0;
+    }
+
+    /* ── Print layout ─────────────────────────────────── */
+    @page {
+      size: letter;
+      margin: 0.65in 0.75in 0.65in 0.75in;
+    }
+
+    @media print {
+      body { font-size: 10.5pt; }
+      .no-break { page-break-inside: avoid; }
+      .page-break { page-break-before: always; }
+    }
+
+    /* ── Screen wrapper ───────────────────────────────── */
+    .page {
+      max-width: 7.5in;
+      margin: 0 auto;
+      padding: 0.65in 0.75in;
+    }
+
+    /* ── Header ───────────────────────────────────────── */
+    .header {
+      border-bottom: 3px solid #2e7d32;
+      padding-bottom: 10px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .header-left h1 {
+      font-size: 18pt;
+      font-weight: 700;
+      color: #2e7d32;
+      line-height: 1.15;
+    }
+
+    .header-left p {
+      font-size: 10pt;
+      color: #555;
+      margin-top: 3px;
+    }
+
+    .header-right {
+      text-align: right;
+      font-size: 9pt;
+      color: #777;
+      line-height: 1.6;
+    }
+
+    /* ── Section titles ───────────────────────────────── */
+    h2 {
+      font-size: 12pt;
+      font-weight: 700;
+      color: #fff;
+      background: #2e7d32;
+      padding: 5px 10px;
+      border-radius: 3px;
+      margin-bottom: 10px;
+      margin-top: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    h2:first-of-type { margin-top: 0; }
+
+    h3 {
+      font-size: 10.5pt;
+      font-weight: 700;
+      color: #1b5e20;
+      margin: 14px 0 6px 0;
+      border-bottom: 1px solid #c8e6c9;
+      padding-bottom: 3px;
+    }
+
+    /* ── Intro note ───────────────────────────────────── */
+    .intro-box {
+      background: #f1f8e9;
+      border-left: 4px solid #2e7d32;
+      padding: 9px 12px;
+      border-radius: 2px;
+      font-size: 10pt;
+      margin-bottom: 18px;
+      color: #2d2d2d;
+    }
+
+    /* ── Numbered steps ───────────────────────────────── */
+    ol {
+      padding-left: 1.4em;
+    }
+
+    ol li {
+      margin-bottom: 5px;
+      line-height: 1.55;
+    }
+
+    ol li:last-child { margin-bottom: 0; }
+
+    /* ── Inline key / button labels ──────────────────── */
+    kbd {
+      display: inline-block;
+      background: #f5f5f5;
+      border: 1px solid #bbb;
+      border-radius: 3px;
+      padding: 0px 5px;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      font-size: 9.5pt;
+      color: #1a1a1a;
+      white-space: nowrap;
+    }
+
+    /* ── Note callout ─────────────────────────────────── */
+    .note {
+      background: #fff8e1;
+      border-left: 4px solid #f9a825;
+      padding: 7px 10px;
+      font-size: 9.5pt;
+      border-radius: 2px;
+      margin: 8px 0;
+      color: #4a3800;
+    }
+
+    .note strong { color: #e65100; }
+
+    /* ── Two-column layout ────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 4px;
+    }
+
+    .col-box {
+      border: 1px solid #c8e6c9;
+      border-radius: 4px;
+      padding: 10px 12px;
+    }
+
+    .col-box h3 {
+      margin-top: 0;
+      border-bottom-color: #a5d6a7;
+    }
+
+    /* ── Troubleshooting table ────────────────────────── */
+    .trouble-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 9.5pt;
+      margin-top: 6px;
+    }
+
+    .trouble-table thead tr {
+      background: #e8f5e9;
+    }
+
+    .trouble-table th {
+      text-align: left;
+      padding: 5px 8px;
+      font-weight: 700;
+      border-bottom: 2px solid #a5d6a7;
+      color: #1b5e20;
+    }
+
+    .trouble-table td {
+      padding: 5px 8px;
+      border-bottom: 1px solid #e0e0e0;
+      vertical-align: top;
+    }
+
+    .trouble-table tr:last-child td { border-bottom: none; }
+
+    /* ── Checklist ────────────────────────────────────── */
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+      columns: 2;
+      column-gap: 20px;
+    }
+
+    .checklist li {
+      margin-bottom: 5px;
+      padding-left: 22px;
+      position: relative;
+      font-size: 10pt;
+      break-inside: avoid;
+    }
+
+    .checklist li::before {
+      content: "☐";
+      position: absolute;
+      left: 0;
+      color: #2e7d32;
+      font-size: 11pt;
+    }
+
+    /* ── Footer ───────────────────────────────────────── */
+    .footer {
+      border-top: 1px solid #c8e6c9;
+      margin-top: 28px;
+      padding-top: 8px;
+      font-size: 8.5pt;
+      color: #888;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── HEADER ──────────────────────────────────────── -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Enviar Facturas por Correo desde QuickBooks Desktop</h1>
+      <p>Guía de Referencia para Administración &nbsp;·&nbsp; QuickBooks Desktop 2019</p>
+    </div>
+    <div class="header-right">
+      CL Landscape<br>
+      Preparado abril 2026
+    </div>
+  </div>
+
+  <!-- ── INTRO ───────────────────────────────────────── -->
+  <div class="intro-box">
+    QuickBooks está configurado para enviar facturas directamente a través de la <strong>aplicación Outlook de escritorio</strong> usando el
+    buzón <strong>jose.ramos@cl-land.com</strong>. Los pasos a continuación cubren el uso diario — enviar una factura individual
+    y enviar varias a la vez — además de soluciones rápidas para problemas comunes.
+  </div>
+
+  <!-- ── SECTION 1 ────────────────────────────────────── -->
+  <div class="no-break">
+    <h2>1 &nbsp; Enviar una Factura Individual</h2>
+    <ol>
+      <li>En QuickBooks, abra la factura: <kbd>Customers</kbd> → <kbd>Create Invoices</kbd>, luego busque o cree la factura.</li>
+      <li>Verifique que el correo electrónico del cliente aparezca en el área <strong>Bill To</strong>. Si falta, actualice el registro del cliente primero (ver Sección 4).</li>
+      <li>Asegúrese de que la casilla <strong>"To be e-mailed"</strong> en la parte superior de la factura esté <strong>marcada</strong>.</li>
+      <li>Haga clic en el <strong>ícono de sobre</strong> (Email) en la parte superior de la ventana de factura, o vaya a <kbd>File</kbd> → <kbd>Send Forms</kbd>.</li>
+      <li>Se abre una ventana de vista previa con la dirección del destinatario y el asunto. Revísela y haga clic en <kbd>Send Now</kbd>.</li>
+      <li>Outlook se abrirá brevemente en segundo plano y enviará el correo. El estado de la factura cambiará a <strong>Sent</strong>.</li>
+    </ol>
+    <div class="note">
+      <strong>Consejo:</strong> Después de enviar, abra Outlook y revise <strong>Elementos enviados</strong> para confirmar que el correo salió con el PDF adjunto.
+    </div>
+  </div>
+
+  <!-- ── SECTION 2 ────────────────────────────────────── -->
+  <div class="no-break">
+    <h2>2 &nbsp; Enviar Varias Facturas a la Vez</h2>
+    <ol>
+      <li>Vaya a <kbd>File</kbd> → <kbd>Send Forms</kbd>.</li>
+      <li>QuickBooks muestra todas las facturas que tienen marcada la casilla <strong>"To be e-mailed"</strong>.</li>
+      <li>Revise la lista. <strong>Desmarque</strong> cualquier factura que no desee enviar en este momento.</li>
+      <li>Haga clic en <kbd>Send Now</kbd>. QuickBooks enviará cada factura una por una a través de Outlook.</li>
+      <li>Al terminar, abra Outlook → <strong>Elementos enviados</strong> y verifique 2 o 3 correos para confirmar la entrega.</li>
+    </ol>
+    <div class="note">
+      <strong>Nota:</strong> Outlook debe estar abierto (sin estar redactando un correo nuevo) mientras QuickBooks envía el lote.
+    </div>
+  </div>
+
+  <!-- ── SECTION 3 ────────────────────────────────────── -->
+  <div class="no-break">
+    <h2>3 &nbsp; Verificar la Entrega</h2>
+    <div class="two-col">
+      <div class="col-box">
+        <h3>En Outlook</h3>
+        <ol>
+          <li>Abra Outlook y vaya a <strong>Elementos enviados</strong>.</li>
+          <li>Busque el correo de la factura — confirme que el PDF está adjunto.</li>
+          <li>Si el correo no aparece, el envío falló (ver Sección 5).</li>
+        </ol>
+      </div>
+      <div class="col-box">
+        <h3>En QuickBooks</h3>
+        <ol>
+          <li>Abra la factura que fue enviada.</li>
+          <li>Busque la etiqueta <strong>"Sent"</strong> o el ícono de estado de correo en la parte superior.</li>
+          <li>La pestaña de historial también registra la fecha de envío y el destinatario.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 ────────────────────────────────────── -->
+  <div class="no-break">
+    <h2>4 &nbsp; Agregar o Actualizar el Correo de un Cliente</h2>
+    <ol>
+      <li>Vaya a <kbd>Customers</kbd> → <kbd>Customer Center</kbd>.</li>
+      <li>Haga doble clic en el nombre del cliente para abrir su registro.</li>
+      <li>Haga clic en la pestaña <strong>Address Info</strong>.</li>
+      <li>Ingrese o corrija la dirección de correo en el campo <strong>Main Email</strong>.</li>
+      <li>Haga clic en <kbd>OK</kbd> para guardar. La próxima factura creada para este cliente incluirá el correo automáticamente.</li>
+    </ol>
+  </div>
+
+  <!-- ── SECTION 5 ────────────────────────────────────── -->
+  <h2>5 &nbsp; Solución Rápida de Problemas</h2>
+  <table class="trouble-table">
+    <thead>
+      <tr>
+        <th style="width:32%">Problema</th>
+        <th>Qué hacer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>La factura no aparece en Elementos enviados de Outlook</td>
+        <td>Asegúrese de que Outlook esté abierto antes de enviar. Intente nuevamente con <kbd>File</kbd> → <kbd>Send Forms</kbd>. Si sigue fallando, reinicie Outlook y QuickBooks, luego vuelva a intentarlo.</td>
+      </tr>
+      <tr>
+        <td>QuickBooks se congela o cierra al enviar</td>
+        <td>Actualice QuickBooks: <kbd>Help</kbd> → <kbd>Update QuickBooks Desktop</kbd>. Asegúrese también de que Outlook esté abierto y no esté redactando otro correo en ese momento.</td>
+      </tr>
+      <tr>
+        <td>El cliente dice que la factura fue a correo no deseado</td>
+        <td>Pida al cliente que marque el correo como "No es spam" y agregue <strong>jose.ramos@cl-land.com</strong> a sus contactos. Esto es una solución única por cliente.</td>
+      </tr>
+      <tr>
+        <td>El cliente dice que no había PDF adjunto</td>
+        <td>En QuickBooks, vaya a <kbd>Help</kbd> → <kbd>QuickBooks PDF &amp; Print Repair Tool</kbd> y ejecute la reparación. Luego reenvíe la factura.</td>
+      </tr>
+      <tr>
+        <td>La casilla "To be e-mailed" no aparece</td>
+        <td>El registro del cliente no tiene dirección de correo. Agréguela en Customer Center (ver Sección 4), luego vuelva a abrir la factura — la casilla aparecerá.</td>
+      </tr>
+      <tr>
+        <td>Outlook no se abre en absoluto al enviar</td>
+        <td>Es posible que Outlook no esté configurado como la aplicación de correo predeterminada. Contacte a soporte técnico para verificar la configuración de Windows y las preferencias de Send Forms en QuickBooks.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ── SECTION 6 ────────────────────────────────────── -->
+  <div class="no-break" style="margin-top:20px;">
+    <h2>6 &nbsp; Lista de Verificación Diaria</h2>
+    <ul class="checklist">
+      <li>Outlook está abierto antes de comenzar</li>
+      <li>El cliente tiene un correo válido registrado</li>
+      <li>La casilla "To be e-mailed" está marcada en cada factura</li>
+      <li>Revisé los montos y fechas de vencimiento antes de enviar</li>
+      <li>Hice clic en Send Now y vi la confirmación</li>
+      <li>Revisé Elementos enviados en Outlook — correo con PDF presente</li>
+      <li>El estado de la factura en QuickBooks muestra "Sent"</li>
+    </ul>
+  </div>
+
+  <!-- ── FOOTER ───────────────────────────────────────── -->
+  <div class="footer">
+    <span>CL Landscape · Referencia de Administración · QuickBooks Desktop 2019</span>
+    <span>¿Preguntas? Contacte a soporte técnico.</span>
+  </div>
+
+</div>
+</body>
+</html>
