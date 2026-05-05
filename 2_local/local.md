@@ -156,6 +156,29 @@ Before beginning setup, you need the QuickBooks Desktop 2019 installer. Since on
 2. Request a backup CD be shipped to you
 3. Once received, use the CD on the PC with a CD drive or use an external CD drive on the other PC
 
+**Option 4: Copy the CD You Already Have to a USB Drive (Easiest if you have the CD)**
+
+Since you own the license, copying the CD contents to a USB drive is perfectly fine.
+
+On the PC that has a CD drive:
+1. Insert the QuickBooks Desktop 2019 CD
+2. Open File Explorer and navigate to the CD drive (usually `D:` or `E:`)
+3. Select all files on the CD: **Ctrl+A**
+4. Copy them: **Ctrl+C**
+5. Plug in a USB flash drive (at least 2GB free space)
+6. Open the USB drive in File Explorer and create a folder called `QB2019`
+7. Open that folder and paste all the CD files into it: **Ctrl+V**
+8. Wait for the copy to finish (2–5 minutes)
+
+On the PC without a CD drive:
+1. Plug in the USB drive
+2. Open File Explorer > navigate to the USB drive > open the `QB2019` folder
+3. Find `setup.exe` or `autorun.exe`
+4. Right-click it > **Run as Administrator**
+5. The QuickBooks installer launches — proceed as outlined in Step 2 below
+
+> **License key:** You'll need it during installation. It's printed on the CD sleeve or case, or available at [camps.intuit.com](https://camps.intuit.com) under your products.
+
 **Once you have the installer file:**
 - Save it to a USB drive or cloud location accessible to both PCs
 - You'll use this file in **Step 2: Install QuickBooks Desktop 2019 on Both PCs** below
