@@ -1,172 +1,82 @@
-# Renewal Strategy (Capacity-First)
+# Renewal Strategy (Simple Version)
 
-## Core Position
-Renewal strategy must start with capacity, not price.
+## Why This Exists
+Renewals get messy when every account is priced the same way. The problem is not just the work on site. It is also the drive time, route shape, and scheduling burden that come with the account.
 
-If we reduce repetitive contract visits, those hours should not sit idle. They must be deliberately converted into higher-value production work:
-- mulch
-- seasonal color
-- landscape installation
+That shows up most on far, low-density work. Those accounts can look fine at the service level and still hurt margin if they take too long to reach, interrupt a route, or create pressure in peak season.
 
-Price increases are a secondary lever after we optimize recurring labor and reallocate capacity.
+This strategy keeps renewals simple, but it makes sure the route economics are part of the decision.
 
-## Why the Previous Model Is Risky
-- We use 1-year contracts with 12 equal payments.
-- Labor and field intensity are concentrated in Apr-Oct.
-- Recurring service can be overbuilt in low-demand months.
+## Policy
+Use the same three-step decision path for every renewal:
+1. Classify the route.
+2. Pick the default pricing direction.
+3. Run the final margin and capacity checks.
 
-Result:
-- flat revenue timing,
-- seasonal labor spikes,
-- tighter peak-season execution,
-- missed opportunity to sell and produce enhancement work.
+If any step points to a problem, revise the renewal before sending it.
 
-## Capacity-First Planning Model
+### Route Buckets
+Classify the account quickly using travel time and nearby stop density.
 
-### Step 1: Define Annual Crew-Hour Supply
-- Total annual crew-hours available (by branch/team).
-- Monthly capacity curve (not flat; weather and daylight matter).
+| Route Type | Quick Test | What It Usually Means |
+|---|---|---|
+| Near + Dense | <= 25 minutes one-way and 3+ nearby stops | Easy to absorb, usually low route friction |
+| Mixed | 26-45 minutes one-way or 1-2 nearby stops | Some travel recovery needed |
+| Far + Low-Density | > 45 minutes one-way and 0-1 nearby stops | Highest risk for margin and capacity |
 
-### Step 2: Allocate Capacity Buckets
-Every month, assign planned hours to 3 buckets:
-1. Recurring contractual service (route work).
-2. Enhancement production (mulch, color, installs).
-3. Buffer and contingency (weather, callbacks, urgent work).
+Do not overcomplicate the bucket decision. The purpose is to get to a consistent starting point, not to build a perfect model for every account.
 
-Rule:
-- Do not approve renewal pricing assumptions until the monthly bucket allocation is feasible.
+### Default Renewal Direction
+Once the route is classified, follow the default direction below.
 
-### Step 3: Protect Enhancement Capacity
-- Set a minimum enhancement production allocation during key enhancement windows.
-- If recurring route load consumes that capacity, reduce low-value recurring frequency before adding price pressure.
+| Route Type | Default Direction | Typical Action |
+|---|---|---|
+| Near + Dense | flat or modest increase | Keep scope simple |
+| Mixed | modest increase with travel factored in | Recover some travel cost |
+| Far + Low-Density | capacity-first | Redesign frequency or use a targeted increase |
 
-## Strategic Objective
-Move from a route-heavy model to a balanced model where recurring work funds the base business and enhancements drive margin growth.
+This is a default, not a lock. Near + dense accounts can still move up if pricing is behind. Mixed accounts may need a light travel adjustment. Far, low-density accounts often need the most deliberate review, and sometimes the right answer is changing frequency instead of just changing price.
 
-Target direction (example ranges, refine with real data):
-- Recurring contractual hours: 60-70% of annual hours.
-- Enhancement production hours: 20-30% of annual hours.
-- Buffer and contingency: 10-15% of annual hours.
+### Final Checks
+Before sending the renewal, run two checks:
+1. Margin check: does the renewal still hit the right margin for this account type?
+2. Capacity check: can we actually deliver this in peak months without hurting other work?
 
-## Renewal Decision Logic (In Order)
-1. Capacity fit: Can this account be serviced at target quality within monthly capacity constraints?
-2. Frequency optimization: Can we reduce non-essential recurring visits without lowering standards?
-3. Capacity conversion: Are recovered hours assigned to booked/planned enhancement production?
-4. Margin check: After steps 1-3, is account margin acceptable?
-5. Price action:
-   - Keep price flat if margin and capacity are healthy.
-   - Apply targeted increase only if margin remains weak or account complexity is structurally high.
+If either check fails, change the scope, frequency, or price before the renewal goes out.
 
-## Account Segmentation by Capacity Behavior
+## What To Do In Practice
+- Do not default far, low-density accounts to flat renewals.
+- Show old scope and new scope clearly in every renewal note or email.
+- Keep billing terms simple unless there is a real seasonal or operational reason to add complexity.
 
-### Segment A: Capacity Contributor
-- Low-risk properties where recurring frequency can be tightened.
-- Primary role: free hours for enhancement work.
-- Typical action: flat renewal + optimized schedule.
+In practice, near + dense renewals should move fast, mixed renewals should usually get a light travel-aware increase, and far accounts should get a closer look at whether the current service pattern still makes sense.
 
-### Segment B: Capacity Neutral
-- Some optimization possible, but less flexibility.
-- Primary role: stable recurring base with selective enhancement upsell.
-- Typical action: flat to modest increase.
-
-### Segment C: Capacity Consumer
-- High-demand properties that absorb disproportionate field hours.
-- Primary role: premium service accounts with stricter pricing discipline.
-- Typical action: targeted increase and tighter scope controls.
-
-## Monthly Production Blueprint (Atlanta, Warm-Season Turf)
-
-### Objective
-Avoid overproducing repetitive route work in low-demand periods and intentionally shift labor to enhancement production.
-
-| Month | Recurring Route Intensity | Enhancement Focus | Capacity Intent |
+## Examples
+| Example | Route Type | Suggested Renewal Direction | Why |
 |---|---|---|---|
-| Jan | Low | installs, cleanup projects, backlog work | convert idle route time to project production |
-| Feb | Low-Moderate | early installs, prep for spring mulch/color | stage crews and materials ahead of spring |
-| Mar | Moderate | mulch ramp, spring color installs start | balance route ramp with enhancement launch |
-| Apr | High | mulch peak, color peak, installs | protect enhancement crews from route creep |
-| May | High | mulch closeout, installs continue | maintain weekly route quality + project throughput |
-| Jun | High | installs, irrigation/drainage upgrades | keep project lane open despite growth season load |
-| Jul | High | installs and targeted upgrades | avoid route overload crowding out projects |
-| Aug | High | installs and enhancement backlog | preserve margin by protecting project schedule |
-| Sep | High-Moderate | fall color prep, installs | begin shift from pure route pressure to mixed production |
-| Oct | Moderate | fall color installs, cleanup projects | capture seasonal enhancement demand window |
-| Nov | Moderate-Low | leaf cleanup + fall project closeout | reduce unnecessary turf frequency, keep project crews active |
-| Dec | Low | leaf cleanup, installs, winter projects | monetize lower route demand with project work |
+| Account A: 15 minutes away, 4 nearby stops | Near + Dense | Flat or small increase | Route is efficient and easy to fit in |
+| Account B: 35 minutes away, 2 nearby stops | Mixed | Modest increase | Travel should be partially recovered |
+| Account C: 55 minutes away, 1 nearby stop | Far + Low-Density | Targeted increase or frequency change | High risk of hidden route cost |
+| Account D: 50 minutes away, weekly service that can be cut back | Far + Low-Density | Reduce frequency or reprice | Better to reshape the service than underprice it |
 
-## Visit Frequency Guardrails (Recurring Service)
-- Annual default planning range: 38-46 total visits depending on canopy and property complexity.
-- Do not add recurring visits unless tied to a measurable quality or safety trigger.
-- In Dec-Feb, avoid routine add-on visits that do not protect site condition or safety.
+## Per-Account Renewal Note (Copy/Paste)
+Customer:
+Contract ID:
+Route Type (Near + Dense / Mixed / Far + Low-Density):
+Old Price:
+New Price:
+Price Outcome (Flat / Modest / Targeted):
+Scope Change:
+Margin Check (Pass/Fail):
+Capacity Check (Pass/Fail):
+Owner Review Needed (Y/N):
 
-## Enhancement Conversion Rules
-When recurring visits are reduced, recovered hours must be assigned immediately:
-1. First priority: booked mulch and seasonal color production windows.
-2. Second priority: high-probability installation pipeline.
-3. Third priority: proactive property improvement proposals on existing accounts.
+Use this note as the record of why the renewal was set the way it was. It gives you a consistent audit trail and makes later pricing conversations easier.
 
-No recovered capacity should remain unplanned for more than one monthly cycle.
+## 30-Day Rollout
+1. Classify all upcoming renewals by route type.
+2. Apply the default direction table.
+3. Review only failed checks and far, low-density exceptions each week.
+4. Track renewal rate and margin by route type.
 
-## Financial Structure and Billing Risk
-
-### Problem
-12 equal payments create cash-flow mismatch with seasonal labor concentration.
-
-### Practical Options
-1. Seasonal payment weighting (higher Apr-Oct, lower Nov-Mar).
-2. Spring readiness fee in Mar/Apr.
-3. Deposit at renewal to support peak startup labor/materials.
-4. Annual prepay option with controlled discount.
-
-### Rule
-For capacity-consumer accounts, do not keep equal billing terms by default if peak working-capital gap is unacceptable.
-
-## KPIs That Drive Decisions
-
-### Capacity KPIs
-- Monthly planned vs actual crew utilization.
-- Hours by bucket: recurring, enhancements, buffer.
-- Percent of recovered recurring hours converted to enhancement production.
-
-### Financial KPIs
-- Gross margin by account and segment.
-- Enhancement gross margin dollars per crew-hour.
-- Peak-season working-capital gap (Apr-Oct).
-
-### Service KPIs
-- Callback rate.
-- On-time completion rate.
-- Customer retention by segment.
-
-## Renewal Messaging (Direct and Honest)
-
-### Standard
-- Say what changed.
-- Say why it changed.
-- Say where the capacity goes.
-- Say whether price changed.
-
-### Examples
-1. "We are reducing unnecessary winter route visits and using that labor for mulch, color, and installation work."
-2. "Your recurring service standard stays in place, but the visit pattern is being tightened where we were over-servicing."
-3. "We are keeping price flat on this renewal because optimization keeps this account sustainable."
-4. "We are increasing price on this account because required service intensity remains above what current pricing supports."
-5. "We will show you the exact old vs new visit pattern and how quality will be protected."
-
-## 30-Day Execution Plan
-1. Build monthly capacity map by team: supply hours and current recurring demand.
-2. Identify over-serviced recurring accounts and quantify recoverable hours.
-3. Build enhancement production forecast (mulch, color, installs) by month.
-4. Match recovered recurring hours to enhancement forecast by month.
-5. Classify accounts into capacity contributor, neutral, or consumer.
-6. Set renewal action per account: flat, targeted increase, and billing structure.
-7. Launch pilot group and track conversion of recovered hours into enhancement revenue.
-
-## Open Decisions
-- What minimum percent of annual hours must be reserved for enhancement production?
-- What monthly utilization threshold defines peak overload?
-- What is the maximum acceptable working-capital gap in Apr-Oct?
-- What percent of recovered route hours must convert to enhancements to call this strategy successful?
-
-## Notes for Iteration
-Keep this document numeric. Each revision should tighten assumptions into explicit thresholds and monthly targets.
+The first month is about consistency, not perfection. The goal is to stop obvious pricing misses, spot the hard cases, and build a repeatable pattern that gets better as you collect results by route type.
